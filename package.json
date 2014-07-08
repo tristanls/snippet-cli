@@ -15,7 +15,7 @@
   "dependencies": {
     "clie": "0.1.5",
     "shelljs": "0.3.0",
-    "snippet-elasticsearch": "0.0.3",
+    "snippet-elasticsearch": "0.0.5",
     "snippet-kibana": "0.0.3",
     "snippet-logstash": "0.0.4"
   },
