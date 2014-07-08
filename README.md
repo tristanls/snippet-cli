@@ -6,7 +6,16 @@ _Stability: 1 - [Experimental](https://github.com/tristanls/stability-index#stab
 
 Snippet command-line interface for parsing logs and pushing them through a local [Logstash](http://logstash.net/) -> [Elasticsearch](http://www.elasticsearch.org/) -> [Kibana](http://www.elasticsearch.org/overview/kibana/) pipeline.
 
+## Installation
+
 ```
+npm install -g snippet-cli
+```
+
+## Usage
+
+```
+~$ snippet -h
 Usage: snippet <command>
 
 where <command> is one of:
