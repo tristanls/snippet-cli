@@ -1,0 +1,34 @@
+{
+  "name": "snippet-cli",
+  "version": "0.0.0",
+  "description": "Snippet command-line interface",
+  "bin": {
+    "snippet": "bin/cli.js"
+  },
+  "scripts": {
+    "test": "node scripts/test.js"
+  },
+  "main": "index.js",
+  "devDependencies": {
+    "nodeunit": "0.9.x"
+  },
+  "dependencies": {
+    "clie": "0.1.5",
+    "shelljs": "0.3.0",
+    "snippet-elasticsearch": "0.0.2",
+    "snippet-kibana": "0.0.3",
+    "snippet-logstash": "0.0.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tristanls/snippet-cli.git"
+  },
+  "keywords": [
+    "log",
+    "snippet",
+    "analysis",
+    "cli"
+  ],
+  "author": "Tristan Slominski <tristan.slominski@gmail.com>",
+  "license": "MIT"
+}
