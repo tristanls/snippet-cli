@@ -6,6 +6,10 @@ _Stability: 1 - [Experimental](https://github.com/tristanls/stability-index#stab
 
 Snippet command-line interface for parsing logs and pushing them through a local [Logstash](http://logstash.net/) -> [Elasticsearch](http://www.elasticsearch.org/) -> [Kibana](http://www.elasticsearch.org/overview/kibana/) pipeline.
 
+## Prerequisites
+
+`snippet` requires Java to be installed. It should be a version sufficient to run Elasticsearch and Logstash.
+
 ## Installation
 
 ```
