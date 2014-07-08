@@ -27,3 +27,9 @@ where <command> is one of:
 
 snippet <command> -h    quick help on <command>
 ```
+
+For example:
+
+```
+~$ snippet parse combined-apache-log my.log
+```

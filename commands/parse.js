@@ -39,16 +39,25 @@ var shelljs = require('shelljs');
 
 var TEMP_DIR = shelljs.tempdir();
 var CONFIG_FILE_PATH = path.normalize(path.join(TEMP_DIR, 'parse.config'));
+var FORMATS_DIR_PATH = path.normalize(path.join(__dirname, '..', 'formats'));
 
 var parse = module.exports = clie.command(function (args) {
     var self = this;
 
-    if (args.length < 1) {
+    if (args.length < 2) {
 
         return self.data(parse.usage).end();
     }
 
+    var formatArg = args.shift();
+    var format = path.normalize(path.join(FORMATS_DIR_PATH, formatArg));
     var log = path.normalize(args.shift());
+
+    if (!fs.existsSync(format)) {
+        self.error("Format '" + formatArg + "' not found at " + format + ".")
+            .end();
+        return;
+    }
 
     if (!fs.existsSync(log)) {
         return self.error("File '" + log + "' not found.").end();
@@ -63,7 +72,7 @@ var parse = module.exports = clie.command(function (args) {
 
     var configfileArgs = [];
     configfileArgs.params = {
-        filter: args.params.filter
+        filter: fs.readFileSync(format, 'utf8')
     };
     var configfile = snippet.commands.configfile(configfileArgs);
 
@@ -127,8 +136,8 @@ var parse = module.exports = clie.command(function (args) {
                 stdin.write(data);
                 stdin.write('\n');
                 count++;
-                if ((count % 1000) == 0) {
-                    self.data('Logstash processed ' + count + ' lines.');
+                if ((count % 10000) == 0) {
+                    self.data('Snippet pushed ' + count + ' lines to Logstash.');
                 }
             }
         });
@@ -136,6 +145,7 @@ var parse = module.exports = clie.command(function (args) {
             self.error(error);
         });
         lines.on('end', function () {
+            self.data('Snippet pushed ' + count + ' lines to Logstash.');
             stdin.end();
         });
     });
@@ -158,9 +168,11 @@ parse.knownOpts = {
 };
 
 parse.usage = [
-    "\nUsage: snippet parse <log> [options]",
+    "\nUsage: snippet parse <format> <log-file>",
     "",
-    "options:",
-    "   --filter <filter-section> (The filter section for logstash config file)",
+    "arguments:",
+    "<format>: Name of a file in 'formats'(" + FORMATS_DIR_PATH + ") directory.",
+    "          Available formats are " + fs.readdirSync(FORMATS_DIR_PATH),
+    "<log-file>: The log file to be parsed.",
     ""
 ].join('\n');

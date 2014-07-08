@@ -1,0 +1,8 @@
+# Combined Apache Log
+
+grok {
+  match => { "message" => "%{COMBINEDAPACHELOG}" }
+}
+date {
+  match => [ "timestamp" , "dd/MMM/yyyy:HH:mm:ss Z" ]
+}
