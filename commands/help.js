@@ -42,7 +42,7 @@ help.usage = [
     "\nUsage: snippet <command>",
     "",
     "where <command> is one of:",
-    "   configfile, elasticsearch, kibana, lines, logstash, parse",
+    "   configfile, display, elasticsearch, kibana, lines, logstash, parse",
     "",
     "snippet <command> -h    quick help on <command>"
 ].join('\n');

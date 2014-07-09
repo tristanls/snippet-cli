@@ -47,7 +47,7 @@ var kibana = module.exports = clie.command(function (args) {
     snippetKibana.on('close', function () {
         self.data('Kibana server terminated.').end();
     });
-    
+
     snippetKibana.listen();
 });
 

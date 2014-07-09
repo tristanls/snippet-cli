@@ -166,7 +166,7 @@ var parse = module.exports = clie.command(function (args) {
 });
 
 parse.knownOpts = {
-    "filter": String
+    "data": String
 };
 
 parse.usage = [
