@@ -89,7 +89,9 @@ var parse = module.exports = clie.command(function (args) {
         self.data('Wrote configuration to ' + CONFIG_FILE_PATH + '\n');
 
         var elasticsearchArgs = [];
-        elasticsearchArgs.params = {};
+        elasticsearchArgs.params = {
+            data: args.params.data
+        };
         self.data('Starting Elasticsearch server...');
         var elasticsearch = snippet.commands.elasticsearch(elasticsearchArgs);
         elasticsearch.on('listening', function () {
@@ -168,11 +170,14 @@ parse.knownOpts = {
 };
 
 parse.usage = [
-    "\nUsage: snippet parse <format> <log-file>",
+    "\nUsage: snippet parse <format> <log-file> [options]",
     "",
     "arguments:",
     "<format>: Name of a file in 'formats'(" + FORMATS_DIR_PATH + ") directory.",
     "          Available formats are " + fs.readdirSync(FORMATS_DIR_PATH),
     "<log-file>: The log file to be parsed.",
+    "",
+    "options:",
+    "   --data <path> (Default: TEMP_DIR/snippet/elasticsearch/data)",
     ""
 ].join('\n');
