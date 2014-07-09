@@ -1,6 +1,6 @@
 {
   "name": "snippet-cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Snippet command-line interface",
   "bin": {
     "snippet": "bin/cli.js"
